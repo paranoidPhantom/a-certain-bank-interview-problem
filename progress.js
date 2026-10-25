@@ -15,6 +15,7 @@ class Graphic {
   static SVG_ATTRIBUTES = (size) => [
     ["width", size],
     ["height", size],
+    ["viewbox", `0 0 ${size} ${size}`],
     ["overflow", "visible"],
   ];
   static TRACK_ATTRIBUTES = (width) => [
@@ -133,7 +134,7 @@ class Graphic {
   }
 }
 
-export class Progress extends HTMLDivElement {
+export class Progress extends HTMLElement {
   static observedAttributes = ["value", "orientation", "animate", "hide", "size", "thickness", "fill-color", "shadow-color"];
   static ANIMATION = "@keyframes progress { from { rotate: 0; } to { rotate: 360deg; } }";
 
