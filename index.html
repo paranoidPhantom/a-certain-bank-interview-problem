@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>progress</title>
+  <script defer type="module">
+    import { Progress } from "./progress.js";
+    window.customElements.define("my-progress", Progress, { extends: "div" });
+    
+    const controlled = document.getElementById("controlled");
+    const controls = document.getElementById("controls");
+
+    const value = controls.querySelector("[name='value']");
+    const animate = controls.querySelector("[name='animate']");
+    const hide = controls.querySelector("[name='hide']");
+
+    const updateComponent = () => {
+      controlled.setAttribute("value", value.value);
+      controlled.setAttribute("animate", animate.checked ? "on" : "off");
+      controlled.setAttribute("hide", hide.checked ? "on" : "off");
+    }
+
+    updateComponent();
+    value.addEventListener("change", updateComponent);
+    animate.addEventListener("change", updateComponent);
+    hide.addEventListener("change", updateComponent);
+  </script>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="root">
+    <div class="visualize"> 
+      <p>Progress</p>
+      <div class="container"> 
+        <my-progress id="controlled"></my-progress>
+      </div>
+    </div>
+    <div class="configure"> 
+      <div class="container" id="controls">
+        <div class="item">
+          <input class="chip" type="text" inputmode="numeric" min="0" max="100" name="value" value="75">
+          <span>Value</span>
+        </div>
+        <div class="item">
+          <input class="chip" type="checkbox" name="animate">
+          <span>Animate</span>
+        </div>
+        <div class="item">
+          <input class="chip" type="checkbox" name="hide">
+          <span>Hide</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

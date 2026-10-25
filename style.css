@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+body {
+  margin: 0;
+  background-color: white;
+}
+
+body, input {
+  font-family: "Lato", sans-serif;
+  font-weight: 600;
+}
+
+p {
+  margin: 0.4em 0;
+}
+
+/* Ensure the placeholder is also centered in Firefox */
+
+.root {
+  /* Увы макет и ТЗ весьма неточны, поэтому я вынужден гадать о желаемой адаптивности */
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem;
+  height: calc(100vh - 2.5rem);
+
+  .visualize {
+    flex-shrink: 1.1
+  }
+
+  .configure {
+    .container {
+      width: fit-content;
+      margin: 0 auto;
+    }
+  }
+
+  .visualize, .configure {
+    width: 280px;
+    height: 280px;
+
+    display: flex;
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+
+      height: 100%;
+
+      .item {
+        width: 100%;
+        
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+
+        .chip {
+          width: 44px;
+          height: 28px;
+          background-color: white;
+          border: none;
+
+          text-align: center;
+
+          margin: 0;
+          padding: 0;
+          appearance: none;
+          border-radius: 4rem
+        }
+        input[type="text"].chip {
+          border: 1px solid black;
+          width: 42px;
+          height: 26px;
+          font-size: 1rem;
+        }
+        input[type="checkbox"].chip {
+          background-color: #DFE6F0;
+          position: relative;
+          transition: background-color 0.1s ease-out;
+          &::after {
+            transition: left 0.1s ease-out;
+
+            content: "";
+            background-color: white; 
+            position: absolute;
+            width: 1.5rem;
+            z-index: 2;
+            aspect-ratio: 1;
+            border-radius: 1rem;
+
+            top: 2px;
+            left: 2px;
+          }
+          &:checked {
+            background-color: #005DFF;
+            &::after {
+              left: 18px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 400px) {
+  .root {
+    flex-direction: row;
+  }
+}
